@@ -92,6 +92,7 @@ export default function App() {
               <OrbitControls enableZoom={true} />
             </Canvas>
           </div>
+
         </motion.div>
 
         {/* Footer */}
