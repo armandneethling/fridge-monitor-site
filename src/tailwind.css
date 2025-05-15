@@ -54,3 +54,9 @@ button {
 button:hover {
   filter: brightness(1.1);
 }
+/* Example CSS for responsive height */
+.canvas-container {
+  height: 40vh; /* 40% of viewport height */
+  max-height: 400px;
+  min-height: 250px;
+}

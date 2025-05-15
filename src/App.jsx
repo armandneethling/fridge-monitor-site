@@ -1,31 +1,35 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { motion } from "framer-motion";
 import { FaRocket } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import { Canvas } from "@react-three/fiber";
-import RotatingPhone from "./components/RotatingPhone"; // adjust path if needed
+import { OrbitControls } from '@react-three/drei';
+import RotatingPhone from "./components/RotatingPhone";
 
 const itemVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
 };
 
+function Loader() {
+  return (
+    <div className="text-center text-white font-bold mt-20">
+      Loading 3D model...
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <>
-      <Helmet>
-        <title>Mind-Blowing Single Page</title>
-      </Helmet>
-
       <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 space-y-10">
+        {/* Card container */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="bg-[var(--glass-bg)] backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_0_var(--glass-shadow)] p-8 md:p-14 mt-10 flex flex-col items-center w-full max-w-2xl mx-4"
-          style={{
-            border: `1px solid var(--glass-border)`,
-          }}
+          className="bg-[var(--glass-bg)] backdrop-blur-xl rounded-3xl shadow-[0_8px_32px_0_var(--glass-shadow)] p-6 md:p-12 flex flex-col items-center w-full max-w-2xl mx-2"
+          style={{ border: `1px solid var(--glass-border)` }}
         >
           <motion.h1
             initial={{ y: -30, opacity: 0 }}
@@ -33,9 +37,9 @@ export default function App() {
             transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
             className="text-4xl md:text-5xl font-extrabold text-[var(--color-text-primary)] text-center drop-shadow-md mb-6"
           >
-            Mind-Blowing{" "}
+            My Fridge{" "}
             <span className="text-[var(--color-primary)] font-bold">
-              Single Page
+              Monitor
             </span>
           </motion.h1>
 
@@ -45,9 +49,9 @@ export default function App() {
             initial="hidden"
             animate="visible"
           >
-            Experience the future of web design with blazing fast animations,
-            stunning gradients, and a sleek modern interface. Click the button
-            below to launch your journey!
+            Track and log your temperatures effortlessly with our intuitive app.  
+            Select your fridge type for each entry, and keep your data organized and sorted by date.  
+            Stay on top of your temperature records with a clean, modern interface designed for speed and simplicity.
           </motion.p>
 
           <motion.button
@@ -63,21 +67,36 @@ export default function App() {
             className="flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--color-primary)] text-white font-semibold shadow transition"
           >
             <FaRocket size={20} />
-            Launch Now
+            Download app
           </motion.button>
+
+          {/* Canvas inside card with margin */}
+          <div className="w-full max-w-2xl h-64 md:h-96 mx-4 mt-8">
+            <Canvas shadows camera={{ position: [0, 0, 10], fov: 50 }}>
+              <ambientLight intensity={0.75} />
+              <directionalLight
+                position={[3, 6, 2]}
+                intensity={1.5}
+                castShadow
+                shadow-mapSize-width={1024}
+                shadow-mapSize-height={1024}
+                shadow-camera-far={50}
+                shadow-camera-left={-10}
+                shadow-camera-right={10}
+                shadow-camera-top={10}
+                shadow-camera-bottom={-10}
+              />
+              <Suspense fallback={<Loader />}>
+                <RotatingPhone />
+              </Suspense>
+              <OrbitControls enableZoom={true} />
+            </Canvas>
+          </div>
         </motion.div>
 
-        {/* 3D Phone Canvas */}
-        <div className="w-full h-64 max-w-2xl mx-4">
-          <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[5, 5, 5]} intensity={1} />
-            <RotatingPhone />
-          </Canvas>
-        </div>
-
+        {/* Footer */}
         <footer className="fixed bottom-0 left-0 w-full py-3 text-center text-xs text-[var(--color-text-muted)] bg-white/10 backdrop-blur-md select-none">
-          &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+          &copy; {new Date().getFullYear()} Armand Neethling. All rights reserved.
         </footer>
       </div>
     </>
