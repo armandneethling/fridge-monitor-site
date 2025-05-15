@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-poppins: 'Poppins', sans-serif;
+
+  /* Custom dark grey background */
+  --color-bg: #383838;
+
+  /* Keep your blue accents */
+  --color-primary: var(--color-blue-600);
+  --color-primary-light: var(--color-blue-400);
+  --color-primary-dark: var(--color-blue-800);
+
+  /* Text colors for good contrast on dark bg */
+  --color-text-primary: #f3f4f6; /* light gray */
+  --color-text-muted: #a1a1aa;   /* muted gray */
+
+  /* Glass card */
+  --glass-bg: rgba(56, 56, 56, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(59, 130, 246, 0.1); /* subtle blue shadow */
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  @apply font-poppins min-h-screen;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+a {
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--color-primary-dark);
+}
+button {
+  @apply cursor-pointer rounded-full font-semibold transition;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.75rem 2.5rem;
+  box-shadow: 0 4px 6px rgba(59 130 246 / 0.3);
+}
+button:hover {
+  filter: brightness(1.1);
+}
