@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaRocket } from "react-icons/fa";
 import { Helmet } from "react-helmet";
+import { Canvas } from "@react-three/fiber";
+import RotatingPhone from "./components/RotatingPhone"; // adjust path if needed
 
 const itemVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -15,7 +17,7 @@ export default function App() {
         <title>Mind-Blowing Single Page</title>
       </Helmet>
 
-      <div className="min-h-screen w-full flex items-center justify-center p-4">
+      <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 space-y-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -64,6 +66,15 @@ export default function App() {
             Launch Now
           </motion.button>
         </motion.div>
+
+        {/* 3D Phone Canvas */}
+        <div className="w-full h-64 max-w-2xl mx-4">
+          <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
+            <ambientLight intensity={0.5} />
+            <directionalLight position={[5, 5, 5]} intensity={1} />
+            <RotatingPhone />
+          </Canvas>
+        </div>
 
         <footer className="fixed bottom-0 left-0 w-full py-3 text-center text-xs text-[var(--color-text-muted)] bg-white/10 backdrop-blur-md select-none">
           &copy; {new Date().getFullYear()} Your Company. All rights reserved.
