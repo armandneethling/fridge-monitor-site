@@ -70,10 +70,10 @@ export default function App() {
           {/* Canvas inside card with margin */}
           <div className="w-full max-w-2xl h-64 md:h-96 mx-4 mt-8"> 
             <Canvas shadows camera={{ position: [0, 0, 10], fov: 50 }}>
-              <ambientLight intensity={0.75} />
+              <ambientLight intensity={1.6} />
                 <directionalLight
-                  position={[3, 6, 2]}
-                  intensity={1.5}
+                  position={[1, 12, 4]}
+                  intensity={2.8}
                   castShadow
                   shadow-mapSize-width={1024}
                   shadow-mapSize-height={1024}

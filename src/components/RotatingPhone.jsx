@@ -6,7 +6,7 @@ useGLTF.preload('/models/phonev2.glb');
 
 export default function RotatingPhone() {
   const group = useRef();
-  const { scene } = useGLTF('/models/phonev2.glb');
+  const { scene } = useGLTF('/models/rotatingPhone.glb');
 
   useFrame(({ clock }) => {
     if (!group.current) return;
@@ -21,7 +21,7 @@ export default function RotatingPhone() {
     <primitive
       ref={group}
       object={scene}
-      scale={[12, 12, 12]}
+      scale={[1.35, 1.35, 1.35]}
       castShadow
       receiveShadow
     />
