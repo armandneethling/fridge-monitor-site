@@ -72,7 +72,7 @@ export default function App() {
             <Canvas shadows camera={{ position: [0, 0, 10], fov: 50 }}>
               <ambientLight intensity={1.6} />
                 <directionalLight
-                  position={[1, 12, 4]}
+                  position={[2, 12, 14]}
                   intensity={2.8}
                   castShadow
                   shadow-mapSize-width={1024}
