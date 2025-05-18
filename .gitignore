@@ -26,4 +26,3 @@ dist-ssr
 # Ignore all APK files anywhere in the project
 *.apk
 /public/apk/
-/public/apk/fridgemonitor.apk
