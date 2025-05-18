@@ -60,3 +60,29 @@ button:hover {
   max-height: 400px;
   min-height: 250px;
 }
+
+.loader-container {
+  position: relative;       /* relative positioning for internal absolute elements */
+  width: 100%;              /* full width of the parent container */
+  height: 64px;             /* height matching your Canvas height or desired loader height */
+  display: flex;            /* flexbox for centering */
+  justify-content: center;  /* horizontal center */
+  align-items: center;      /* vertical center */
+  margin-top: 1rem;         /* spacing from Canvas */
+  pointer-events: none;     /* allows clicks to pass through if needed */
+  user-select: none;        /* prevent text selection */
+  z-index: 10;              /* ensure it’s above other elements */
+}
+
+.loader-container > div {
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 0 0 5px rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  user-select: none;
+}

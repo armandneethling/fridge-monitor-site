@@ -1,7 +1,6 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { FaRocket } from "react-icons/fa";
-import { Helmet } from "react-helmet";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from '@react-three/drei';
 import RotatingPhone from "./components/RotatingPhone";
@@ -10,14 +9,6 @@ const itemVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0 },
 };
-
-function Loader() {
-  return (
-    <div className="text-center text-white font-bold mt-20">
-      Loading 3D model...
-    </div>
-  );
-}
 
 export default function App() {
   return (
@@ -54,45 +45,48 @@ export default function App() {
             Stay on top of your temperature records with a clean, modern interface designed for speed and simplicity.
           </motion.p>
 
-          <motion.button
-            variants={itemVariants}
-            whileHover={{
-              scale: 1.04,
-              boxShadow: "0 4px 24px 0 rgba(59,130,246,0.3)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => alert("🚀 Launching your mind-blowing experience!")}
-            aria-label="Launch Button"
-            type="button"
-            className="flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--color-primary)] text-white font-semibold shadow transition"
-          >
-            <FaRocket size={20} />
-            Download app
-          </motion.button>
+          <div className="flex flex-col items-center space-y-2">
+            <p className="text-sm text-[var(--color-text-muted)] font-semibold">
+              Download the latest version
+            </p>
+
+            <motion.button
+              variants={itemVariants}
+              whileHover={{
+                scale: 1.04,
+                boxShadow: "0 4px 24px 0 rgba(59,130,246,0.3)",
+              }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => window.open('/apk/fridgemonitor.apk', '_blank')}
+              aria-label="Download App"
+              type="button"
+              className="flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--color-primary)] text-white font-semibold shadow transition"
+            >
+              <FaRocket size={20} />
+              Download app
+            </motion.button>
+          </div>
 
           {/* Canvas inside card with margin */}
-          <div className="w-full max-w-2xl h-64 md:h-96 mx-4 mt-8">
+          <div className="w-full max-w-2xl h-64 md:h-96 mx-4 mt-8"> 
             <Canvas shadows camera={{ position: [0, 0, 10], fov: 50 }}>
               <ambientLight intensity={0.75} />
-              <directionalLight
-                position={[3, 6, 2]}
-                intensity={1.5}
-                castShadow
-                shadow-mapSize-width={1024}
-                shadow-mapSize-height={1024}
-                shadow-camera-far={50}
-                shadow-camera-left={-10}
-                shadow-camera-right={10}
-                shadow-camera-top={10}
-                shadow-camera-bottom={-10}
-              />
-              <Suspense fallback={<Loader />}>
-                <RotatingPhone />
-              </Suspense>
+                <directionalLight
+                  position={[3, 6, 2]}
+                  intensity={1.5}
+                  castShadow
+                  shadow-mapSize-width={1024}
+                  shadow-mapSize-height={1024}
+                  shadow-camera-far={50}
+                  shadow-camera-left={-10}
+                  shadow-camera-right={10}
+                  shadow-camera-top={10}
+                  shadow-camera-bottom={-10}
+                />
+              <RotatingPhone />
               <OrbitControls enableZoom={true} />
             </Canvas>
           </div>
-
         </motion.div>
 
         {/* Footer */}
