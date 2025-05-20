@@ -57,7 +57,7 @@ export default function App() {
                 boxShadow: "0 4px 24px 0 rgba(59,130,246,0.3)",
               }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => window.open('public/apk/fridgemonitor.apk', '_blank')}
+              onClick={() => window.open('/apk/app-release.apk', '_blank')}
               aria-label="Download App"
               type="button"
               className="flex items-center gap-2 px-8 py-3 rounded-full bg-[var(--color-primary)] text-white font-semibold shadow transition"
